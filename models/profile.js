@@ -8,7 +8,10 @@ module.exports = (sequelize, DataTypes) => {
         this.setDataValue('address', val.toLowerCase());
       }
     },
-    email: DataTypes.STRING,
+    email: {
+      type: DataTypes.STRING,
+      unique: true
+    },
     name: DataTypes.STRING,
     website: DataTypes.STRING,
     org: DataTypes.STRING,
