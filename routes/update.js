@@ -1,13 +1,17 @@
 module.exports = Profile => async (req, res) => {
   const { address } = req;
-	const profile = await Profile.findOne({ where: { address }});
+  const profile = await Profile.findOne({ where: { address }});
 
-  if (profile) {
-    return res.status(409).send('conflict-address');
+  if (!profile) {
+    return res.status(404).send('User not found.');
+  }
+
+  if (req.body.address) {
+    return res.status(400).send('Cannot update address');
   }
 
   try {
-    await Profile.create(Object.assign(req.body, { address }));
+    await profile.update(req.body);
   } catch (e) {
     if (e.errors[0] && e.errors[0].path === 'email') {
       return res.status(409).send('conflict-email');
