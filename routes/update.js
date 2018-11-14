@@ -1,10 +1,5 @@
 module.exports = Profile => async (req, res) => {
-  const { address } = req;
-  const profile = await Profile.findOne({ where: { address }});
-
-  if (!profile) {
-    return res.status(404).send('User not found.');
-  }
+  const { profile } = req;
 
   if (req.body.address) {
     return res.status(400).send('Cannot update address');
