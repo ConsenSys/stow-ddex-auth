@@ -8,7 +8,7 @@ const getBaseUrl = params => {
 }
 
 const emailConfirmation = params => {
-  const url = `http://localhost:3000/verify?activationCode=${params.activationCode}`;
+  const url = `${getBaseUrl()}/verify?activationCode=${params.activationCode}`;
 
   return {
     Message: {
