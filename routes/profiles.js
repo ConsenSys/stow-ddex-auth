@@ -8,7 +8,7 @@ module.exports = Profile => async (req, res) => {
   });
 
   if (profile) {
-    res.json(profile);
+    res.status(200).json(profile);
   } else {
     res.status(404).send('No profile found for that address.');
   }
